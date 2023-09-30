@@ -42,7 +42,7 @@ if [[ "${profile}" == "debug" ]] && command -v cargo-clippy >/dev/null; then
         cd "$( dirname "$0" )" &&
         set -x &&
         RUSTFLAGS="$RUSTFLAGS ${rustflags[*]}" cargo clippy "${args[@]}" \
-            --color always --locked --all-features --all-targets --workspace \
+            --color always --offline --all-features --all-targets --workspace \
             -- --deny warnings
     )
 fi
@@ -51,7 +51,7 @@ fi
     cd "$( dirname "$0" )" &&
     set -x &&
     RUSTFLAGS="$RUSTFLAGS ${rustflags[*]}" cargo build "${args[@]}" \
-        --color always --locked
+        --color always --offline
 )
 
 cp -u "${target_dir}/${profile}/libsev.a" "${output}"
